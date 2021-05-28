@@ -1,6 +1,18 @@
 .getQuestdb {
-  margin-left: 40px;
+  margin-left: 11px;
   font-size: var(--font-size-small);
+}
+
+.benchMarkBtn {
+  margin-left: 11px;
+  background-color: transparent;
+  border: 2px solid #7a7a80;
+  color: var(--palette-white);
+  text-transform: none;
+}
+
+.benchMarkBtn:hover {
+  background-color: var(--palette-white-20);
 }
 
 .brand {
