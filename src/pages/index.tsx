@@ -2,6 +2,7 @@ import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useEffect, useState } from "react"
 
+import Slider from "react-slick"
 import Button from "@theme/Button"
 import Chevron from "@theme/Chevron"
 import CodeBlock from "@theme/CodeBlock"
@@ -19,6 +20,8 @@ import usCss from "../css/index/usp.module.css"
 import cuCss from "../css/index/customer.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const FeatureTabs = () => {
   const [opened, setOpened] = useState<"digital" | "realtime" | "integration">(
@@ -213,85 +216,206 @@ const Integration = () => (
   </section>
 )
 
-const Customers = () => (
-  <section className={clsx(seCss["section--slim"])}>
-    <div className={cuCss.logo}>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="DATRON logo"
-          height={22}
-          src="/img/pages/customers/logos/datron.png"
-          width={110}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Kepler logo"
-          height={34}
-          src="/img/pages/customers/logos/kepler.png"
-          width={140}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Verizon logo"
-          height={25}
-          src="/img/pages/customers/logos/verizon.png"
-          width={110}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="YCombinator logo"
-          className={cuCss.logo__img}
-          height={34}
-          src="/img/pages/customers/logos/yc.png"
-          width={34}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Toggle logo"
-          height={20}
-          src="/img/pages/customers/logos/toggle.svg"
-          width={115}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Innova logo"
-          height={20}
-          src="/img/pages/customers/logos/innova.png"
-          width={100}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Ably logo"
-          height={28}
-          src="/img/pages/customers/logos/ably.svg"
-          width={90}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="Insurance Information Institute logo"
-          height={41}
-          src="/img/pages/customers/logos/iii.png"
-          width={140}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
-          alt="BIBA logo"
-          height={19}
-          src="/img/pages/customers/logos/biba.svg"
-          width={60}
-        />
-      </div>
-    </div>
-  </section>
-)
+const Customers = () => {
+  const windowWidth = useWindowWidth()
+  // eslint-disable-next-line no-console
+  console.log("windowWidth", windowWidth)
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      // {
+      //   breakpoint: 600,
+      //   settings: {
+      //     slidesToShow: 2,
+      //     slidesToScroll: 2,
+      //     initialSlide: 2,
+      //   },
+      // },
+      // {
+      //   breakpoint: 480,
+      //   settings: {
+      //     slidesToShow: 1,
+      //     slidesToScroll: 1,
+      //   },
+      // },
+    ],
+  }
+
+  return (
+    <>
+      {windowWidth != null && windowWidth > 1000 ? (
+        <section className={clsx(seCss["section--slim"])}>
+          <div className={cuCss.logo}>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="DATRON logo"
+                height={22}
+                src="/img/pages/customers/logos/datron.svg"
+                width={110}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="Kepler logo"
+                height={34}
+                src="/img/pages/customers/logos/kepler.svg"
+                width={140}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="Verizon logo"
+                height={25}
+                src="/img/pages/customers/logos/verizon.svg"
+                width={110}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="YCombinator logo"
+                className={cuCss.logo__img}
+                height={34}
+                src="/img/pages/customers/logos/yc.png"
+                width={34}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="Innova logo"
+                height={20}
+                src="/img/pages/customers/logos/innova.svg"
+                width={100}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="Ably logo"
+                height={28}
+                src="/img/pages/customers/logos/ably.svg"
+                width={90}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="Insurance Information Institute logo"
+                height={41}
+                src="/img/pages/customers/logos/iii.svg"
+                width={140}
+              />
+            </div>
+            <div className={cuCss.logo__item}>
+              <img
+                alt="First Advantage logo"
+                height={35}
+                src="/img/pages/customers/logos/fadv.svg"
+                width={160}
+              />
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className={clsx(seCss["section--slim"])}>
+          <div className={cuCss.mobile__container}>
+            <Slider {...settings}>
+              <div>
+                <div className={cuCss.mobile__item}>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="DATRON logo"
+                      height={22}
+                      src="/img/pages/customers/logos/datron.svg"
+                      width={110}
+                    />
+                  </div>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="Kepler logo"
+                      height={34}
+                      src="/img/pages/customers/logos/kepler.svg"
+                      width={140}
+                    />
+                  </div>
+                </div>
+                <div className={cuCss.mobile__item}>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="Verizon logo"
+                      height={25}
+                      src="/img/pages/customers/logos/verizon.svg"
+                      width={110}
+                    />
+                  </div>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="YCombinator logo"
+                      className={cuCss.logo__img}
+                      height={34}
+                      src="/img/pages/customers/logos/yc.png"
+                      width={34}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className={cuCss.mobile__item}>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="Innova logo"
+                      height={20}
+                      src="/img/pages/customers/logos/innova.svg"
+                      width={100}
+                    />
+                  </div>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="Ably logo"
+                      height={28}
+                      src="/img/pages/customers/logos/ably.svg"
+                      width={90}
+                    />
+                  </div>
+                </div>
+                <div className={cuCss.mobile__item}>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="Insurance Information Institute logo"
+                      height={41}
+                      src="/img/pages/customers/logos/iii.svg"
+                      width={140}
+                    />
+                  </div>
+                  <div className={cuCss.mobile__subitem}>
+                    <img
+                      alt="First Advantage logo"
+                      height={35}
+                      src="/img/pages/customers/logos/fadv.svg"
+                      width={180}
+                    />
+                  </div>
+                </div>
+              </div>
+            </Slider>
+          </div>
+        </section>
+      )}
+    </>
+  )
+}
 
 const Top = () => {
   const { siteConfig } = useDocusaurusContext()

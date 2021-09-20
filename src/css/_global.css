@@ -300,3 +300,13 @@ body {
   opacity: 0;
   transition: opacity 200ms ease-in;
 }
+
+/* Custom Slick Dots */
+.slick-dots {
+  position: relative !important;
+  bottom: 0 !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px !important;
+}
